@@ -86,22 +86,21 @@ async def heh(ctx, count_heh = 5):
     await ctx.send("he" * count_heh)
 
 @bot.command()
-async def contaminacion(ctx):
+async def curiosidad(ctx):
     await ctx.send(f"""
     Hola, soy un bot {bot.user}!
     """)
     #comentarios
  
-    await ctx.send("Quieres conocer de que trata la contaminación?")
+    await ctx.send("¿Te gustaria saber quien fue aristoteles?")
     # Esperar la respuesta del usuario
     def check(message):
         return message.author == ctx.author and message.channel == ctx.channel and message.content in ['si', 'no']
     response = await bot.wait_for('message', check=check)
     if response:
-        if response.content:
+        if response.content == "si":
             await ctx.send(""" 
-            La contaminacion afecta a los grandes ecosistemas naturales que tenemos, como las selvas y los bosques...
-            También hace que la temperatura en el planeta aumente, generando el calentamiendo global.
+            Aristóteles ​​​​ fue un filósofo, polímata y científico griego nacido en la ciudad de Estagira, al norte de la Antigua Grecia. Es considerado junto a Platón, el padre de la filosofía occidental.
             """)
  
         else:
@@ -109,33 +108,32 @@ async def contaminacion(ctx):
     else:
         await ctx.send("Lo siento, no pude entender tu respuesta. Inténtalo de nuevo.")
  
-    await ctx.send("Quieres mas ejemplos sobre contaminación'si' o 'no'.")
+    await ctx.send("Quieres mas informacion? 'si' o 'no'.")
     def check1(message):
         return message.author == ctx.author and message.channel == ctx.channel and message.content in ['si', 'no']
     response1 = await bot.wait_for('message', check=check1)
     if response1:
         if response1.content == "si":
             await ctx.send("""
-            El calentamiento global hace que los polos se descongelen, por lo tanto el nivel de los mares aumenta.
-            Provocando así la muerte de la fauna y la flora que habita en esas zonas.
+            Fue discípulo de Platón y de otros pensadores, como Eudoxo de Cnido, durante los veinte años que estuvo en la Academia de Atenas.​ Poco después de la muerte de Platón, Aristóteles abandonó Atenas para ser el maestro de Alejandro Magno en el Reino de Macedonia durante casi cinco años.​ En la última etapa de su vida, fundó el Liceo en Atenas, donde enseñó hasta un año antes de su muerte.
             """) 
         else:
             await ctx.send("Está bien, si alguna vez necesitas hablar sobre otro tema, estaremos en contacto.")
     else:
         await ctx.send("Lo siento, no pude entender tu respuesta. Inténtalo de nuevo.")
-    await ctx.send("Te gustaria que te envie una foto sobre un ejemplo de contaminación?")
+    await ctx.send("Te gustaria que te envie una foto de aristoteles?")
     def check2(message):
         return message.author == ctx.author and message.channel == ctx.channel and message.content in ['si', 'no']
     response2 = await bot.wait_for('message', check=check2)
     if response2:
         if response1.content == "si":
-            image_path = 'contaminación/conta1.jpeg'
+            image_path = 'images/Aristóteles.jpg'
  
         # Verificar si el archivo existe antes de enviarlo
         if os.path.exists(image_path):
             with open(image_path, 'rb') as f:
                 picture = discord.File(f)
-                await ctx.send("Aquí tienes un ejemplo de contaminación:", file=picture)
+                await ctx.send("Aquí tienes una representacion artistica de aristoteles:", file=picture)
         else:
             await ctx.send("Lo siento, no pude encontrar la imagen. Verifica que la ruta sea correcta.")
     else:
@@ -153,9 +151,5 @@ async def rm(ctx):
     with open(f'images/{random.choice(images)}', 'rb') as f:
         picture = discord.File(f)
     await ctx.send(file=picture)
-
-@bot.command()
-async def heh(ctx, count_heh = 5):
-    await ctx.send("he" * count_heh)
 
 bot.run("algo")
